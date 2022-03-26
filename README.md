@@ -4,4 +4,6 @@
 PREVIEW : https://medal.tv/games/gta-v/clips/fqrCYbsfHjXOR/d1337OU1uPry?invite=cr-MSxSYnQsMjM3NTk3MjEs
  
 Dependency's:
+- qb-core
+- qb-target
 - MiniGame : https://github.com/Prime-Script/prime-vangelico/tree/main/assets
