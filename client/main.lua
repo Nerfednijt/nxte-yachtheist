@@ -26,7 +26,19 @@ end
 
 -- function to call cops
 local function CallCops()
- -- your code to call police here :D
+    local ped = PlayerPedId()
+    local coords = GetEntityCoords(ped)
+    local s1, s2 = Citizen.InvokeNative(0x2EB41072B4C1E4C0, coords.x, coords.y, coords.z, Citizen.PointerValueInt(), Citizen.PointerValueInt())
+    local street1 = GetStreetNameFromHashKey(s1)
+    local street2 = GetStreetNameFromHashKey(s2)
+    local streetLabel = street1
+    if street2 ~= nil then
+        streetLabel = streetLabel .. " " .. street2
+    end
+    local typecall = '| 10-68 YACHT ROBBERY |'
+    TriggerServerEvent('nxte:server:PoliceAlert', coords, '10-68 | YACHT ROBBERY')
+    local message = '| YACHT ROBBERY REPORTED BY SECURITY |'
+    TriggerServerEvent("nxte-alerts:callCops", typecall, message, streetLabel, coords)
 end
 
 -- for hack1
@@ -39,6 +51,7 @@ local function OnHack1Done(success)
         TriggerServerEvent('QBCore:Server:RemoveItem', Config.Hack1Item, 1, slot, info)
         TriggerEvent('inventory:client:ItemBox', QBCore.Shared.Items[Config.Hack1Item], 'remove')
         TriggerServerEvent('nxte-yacht:server:SetHack1', true)
+        CallCops()
     else
         QBCore.Functions.Notify('You failed to hack the camera\'s!', 'error')
         TriggerServerEvent('QBCore:Server:RemoveItem', Config.Hack1Item, 1, slot, info)
