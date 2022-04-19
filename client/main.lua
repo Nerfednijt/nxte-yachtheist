@@ -26,19 +26,7 @@ end
 
 -- function to call cops
 local function CallCops()
-    local ped = PlayerPedId()
-    local coords = GetEntityCoords(ped)
-    local s1, s2 = Citizen.InvokeNative(0x2EB41072B4C1E4C0, coords.x, coords.y, coords.z, Citizen.PointerValueInt(), Citizen.PointerValueInt())
-    local street1 = GetStreetNameFromHashKey(s1)
-    local street2 = GetStreetNameFromHashKey(s2)
-    local streetLabel = street1
-    if street2 ~= nil then
-        streetLabel = streetLabel .. " " .. street2
-    end
-    local typecall = '| 10-68 YACHT ROBBERY |'
-    TriggerServerEvent('nxte:server:PoliceAlert', coords, '10-68 | YACHT ROBBERY')
-    local message = '| YACHT ROBBERY REPORTED BY SECURITY |'
-    TriggerServerEvent("nxte-alerts:callCops", typecall, message, streetLabel, coords)
+ -- your code here
 end
 
 -- for hack1
